@@ -7,9 +7,9 @@
             Grid Size
         </div>
         <div class="size">
-            <input ui-input class="size" type="number" placeholder="width" [(ngModel)]="width">
+            <input ui-input class="size" min="0" max="40" type="number" placeholder="width" [(ngModel)]="width">
             <span>/</span>
-            <input ui-input class="size" type="number" placeholder="heigth" [(ngModel)]="heigth">
+            <input ui-input class="size" min="0" max="40" type="number" placeholder="heigth" [(ngModel)]="heigth">
 
             <div class="surprise">
                 <button ui-button class="dark_accent" (click)="generate_random_size()">Surprise Me!</button>

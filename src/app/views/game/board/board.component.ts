@@ -50,9 +50,7 @@ export class BoardComponent implements OnInit {
             
             if(neighbors.mines === 0) {
                 for(const spread of neighbors.spread){
-                    setTimeout(() => {
-                        this.press(spread.x, spread.y);
-                    }) // gives a nicer effect
+                    this.press(spread.x, spread.y);
                 }
             }
             this.check_game();
