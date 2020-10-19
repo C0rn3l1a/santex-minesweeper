@@ -4,12 +4,13 @@
     </div>
     <div class="content">
         <div class="row head">
-            <div class="cell" *ngFor="let column of columns">
+            <div class="cell" *ngFor="let column of columns" (click)="order_by(column)">
                 <span>{{column.label}}</span>
+                <span class="material-icons" *ngIf="column.key === order.column">keyboard_arrow_{{order.direction === 'ASC' ? 'up' : 'down'}}</span>
             </div>
         </div>
         <div class="body">
-            <div class="row" *ngFor="let game of game_history | async">
+            <div class="row" *ngFor="let game of game_history | tableorder:order | async">
                 <div class="cell" *ngFor="let column of columns">
                     <span 
                         [class.lost]="column.key === 'state' && game[column.key] === 'lost'"
@@ -18,7 +19,16 @@
                         [class.medium]="column.key === 'difficulty' && game[column.key] === 'medium'"
                         [class.hard]="column.key === 'difficulty' && game[column.key] === 'hard'"
                     >
-                        {{game[column.key]}}
+                        <ng-container *ngIf="column.key === 'start_time' || column.key === 'end_time'">
+                            {{game[column.key] | date:'MM-dd-yyyy hh:mm a'}}
+                        </ng-container>
+                        <ng-container *ngIf="column.key === 'total_time'">
+                            {{game[column.key].humanize()}}
+                        </ng-container>
+                        <ng-container *ngIf="column.key === 'state' || column.key === 'difficulty'">
+                            {{game[column.key]}}
+                        </ng-container>
+                        <!-- {{game[column.key]}} -->
                     </span>
                 </div>
             </div>

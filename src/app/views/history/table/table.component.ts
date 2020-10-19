@@ -34,6 +34,8 @@ export class TableComponent implements OnInit {
      */
     game_history: Observable<Game[]>;
 
+    order: any = {column: 'difficulty', direction: 'ASC'};
+
     constructor(private _game_service: GameService) { }
 
     ngOnInit(): void {
@@ -43,11 +45,23 @@ export class TableComponent implements OnInit {
             const start = moment(game.start_time);
             const end = moment(game.end_time);
             const total_time = moment.duration(end.diff(start));
-            game.start_time = start.format('MM-DD-YYYY hh:mm A');
-            game.end_time = end.format('MM-DD-YYYY hh:mm A');
-            game.total_time = total_time.humanize();
+            game.start_time = start;
+            game.end_time = end;
+            game.total_time = total_time;
             return game;
         })))    
     }
 
+    order_by(column:{key:string, label:string}) {
+        if(this.order.column === column.key) {
+            
+            this.order = {
+                column: column.key,
+                direction: this.order.direction === 'DESC' ? 'ASC':'DESC'
+            }
+            
+        } else {
+            this.order = {column: column.key, direction: 'DESC'}
+        }
+    }
 }
