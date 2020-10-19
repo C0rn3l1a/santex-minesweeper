@@ -37,6 +37,8 @@ export class AppComponent {
      * @memberof AppComponent
      */
     getState(outlet) {
-        return outlet && outlet.activatedRoute && outlet.activatedRoute.snapshot._routerState.url;
+        if(outlet.isActivated){
+            return outlet.activatedRoute.snapshot._routerState.url;
+        }
     }
 }
