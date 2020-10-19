@@ -1,0 +1,9 @@
+%input {
+    background: transparent;
+    border-radius: .25rem;
+    border: solid 1px var(--primary);
+}
+
+.ui-input {
+    @extend %input
+}

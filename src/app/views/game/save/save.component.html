@@ -1,0 +1,24 @@
+<div ui-card class="save-card">
+    <div class="title">
+        Save Game
+    </div>
+    <div class="content">
+        <div class="subtitle">
+            Save Name
+        </div>
+        <input ui-input class="name-input" type="text" [(ngModel)]="name" placeholder="wite a name">
+        <div class="subtitle">
+            Select a Save Slot
+        </div>
+        <div class="save-slots">
+            <div ui-card class="save-slot" *ngFor="let save_slot of save_slots | async" (click)="selected_slot = save_slot.slot" [class.selected]="selected_slot === save_slot.slot">
+                <span>Save Slot {{save_slot.slot}}</span>
+                <span *ngIf="save_slot.game"><b>{{save_slot.game.name}}</b></span>
+                <span *ngIf="!save_slot.game"><b style="color: var(--warning)">Unused</b></span>
+            </div>
+        </div>
+        <div class="subtitle">
+        </div>
+        <button ui-button class="success save-button" [disabled]="!allow" (click)="save()">{{used_slot ? 'Overwrite' : 'Save'}}</button>
+    </div>
+</div>

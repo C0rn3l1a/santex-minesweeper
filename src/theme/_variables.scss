@@ -1,0 +1,23 @@
+$primary: #71638f;
+$info: #0b090e;
+$success: #579863;
+$warning: #d4882b;
+$danger: #f44336;
+$background: #241b2f;
+$foreground: #D3D2E0;
+$light_accent: #82A8A8;
+$dark_accent: #6170B6;
+$default: #999999;
+
+:root{
+    --primary: #{$primary};
+    --info: #{$info};
+    --success: #{$success};
+    --warning: #{$warning};
+    --danger: #{$danger};
+    --background: #{$background};
+    --foreground: #{$foreground};
+    --light_accent: #{$light_accent};
+    --dark_accent: #{$dark_accent};
+    --default: #{$default};
+}

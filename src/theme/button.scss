@@ -1,0 +1,68 @@
+%button {
+    background: var(--default);
+    border: none;
+    border-radius: .5rem;
+    color: var(--fore-color);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+
+    &::before {
+        content: "";
+        left: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        transition: all var(--transition);
+        width: 100%;
+    }
+
+    &:hover::before {
+        background: rgba(0,0,0, 0.05);
+    }
+
+    &:active:before {
+        background: rgba(0,0,0, 0.1);
+    }
+    
+    &:disabled {
+        background: var(--default) !important;
+        cursor: not-allowed;
+    }
+}
+
+.ui-button {
+    @extend %button;
+}
+
+.ui-button.success {
+    @extend %button;
+    background: var(--success);
+}
+
+.ui-button.warning {
+    @extend %button;
+    background: var(--warning);
+}
+
+.ui-button.danger {
+    @extend %button;
+    background: var(--danger);
+}
+
+.ui-button.dark_accent {
+    @extend %button;
+    background: var(--dark_accent);
+    color: #FFF;
+}
+
+.ui-button.light_accent {
+    @extend %button;
+    background: var(--light_accent);
+    color: #FFF;
+}
+
+
+

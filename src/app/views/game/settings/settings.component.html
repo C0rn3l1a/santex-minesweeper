@@ -1,0 +1,30 @@
+<div ui-card class="settings-card">
+    <div class="title">
+        New Game
+    </div>
+    <div class="content">
+        <div class="subtitle">
+            Grid Size
+        </div>
+        <div class="size">
+            <input ui-input class="size" type="number" placeholder="width" [(ngModel)]="width">
+            <span>/</span>
+            <input ui-input class="size" type="number" placeholder="heigth" [(ngModel)]="heigth">
+
+            <div class="surprise">
+                <button ui-button class="dark_accent" (click)="generate_random_size()">Surprise Me!</button>
+            </div>
+        </div>
+        <div class="subtitle">
+            Difficulty
+        </div>
+        <div class="difficulties">
+            <button class="radio-button" [class.active]="difficulty === 'easy'" (click)="difficulty = 'easy'">Easy</button>
+            <button class="radio-button" [class.active]="difficulty === 'medium'" (click)="difficulty = 'medium'">Medium</button>
+            <button class="radio-button" [class.active]="difficulty === 'hard'" (click)="difficulty = 'hard'">Hard</button>
+        </div>
+        <div class="subtitle">
+        </div>
+        <button ui-button class="start success" [disabled]="width == null || heigth == null" (click)="start_game()">Start</button>
+    </div>
+</div>

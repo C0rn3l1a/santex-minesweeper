@@ -1,0 +1,54 @@
+<div ui-card class="game-card">
+    <div ui-card class="board" [ngStyle]="{
+        'grid-template-columns': 'repeat('+game?.width+',2rem)',
+        'grid-template-row': 'repeat('+game?.heigth+',2rem)'
+    }">
+        <ng-container *ngFor="let row of game?.board; index as y">
+            <ng-container *ngFor="let cell of row; index as x">
+                <ng-container [ngSwitch]="cell">
+                    <div class="cell" (contextmenu)="flag(x, y); $event.preventDefault()" *ngSwitchCase="'flag'">
+                        <span class="material-icons">flag</span> 
+                    </div>
+                    <div class="cell pressed" *ngSwitchCase="'mine'">
+                        <span class="material-icons">coronavirus</span> 
+                    </div>
+                    <div class="cell pressed" *ngSwitchCase="0">
+                        <!-- <span></span> -->
+                    </div>
+                    <div class="cell" *ngSwitchCase="null" (click)="press(x, y)" (contextmenu)="flag(x, y); $event.preventDefault()">
+                        <!-- <span></span> -->
+                    </div>
+                    <div class="cell pressed" *ngSwitchDefault>
+                        <span [ngClass]="'n'+cell">{{cell}}</span>
+                    </div>
+                    
+                </ng-container>
+                
+            </ng-container>
+        </ng-container>
+        <div class="message" *ngIf="game.state !== 'playing'">
+            <h1 style="color:white">
+                {{game.state === 'lost' ? "Game Over" : "You Win!"}}
+            </h1>
+        </div>
+    </div>
+    <div class="info">
+        <div class="title">
+            Stats
+        </div>
+        <div class="item">
+            <span>mines</span>
+            <span><b>{{game.mines.length}}</b></span>
+        </div>
+        <div class="item">
+            <span>flags</span>
+            <span><b>{{game.flags.length}}</b></span>
+        </div>
+
+        <div class="actions">
+            <button ui-button class="dark_accent" (click)="reset()">Reset</button>
+            <button ui-button class="light_accent" *ngIf="game.state === 'playing'" (click)="save()">Save</button>
+            <button ui-button class="light_accent" *ngIf="game.state !== 'playing'" (click)="main_menu()">Main Menu</button>
+        </div>
+    </div>
+</div>

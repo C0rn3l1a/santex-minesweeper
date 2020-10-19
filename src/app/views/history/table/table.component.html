@@ -1,0 +1,27 @@
+<div ui-card class="history-card">
+    <div class="title">
+        Game History
+    </div>
+    <div class="content">
+        <div class="row head">
+            <div class="cell" *ngFor="let column of columns">
+                <span>{{column.label}}</span>
+            </div>
+        </div>
+        <div class="body">
+            <div class="row" *ngFor="let game of game_history | async">
+                <div class="cell" *ngFor="let column of columns">
+                    <span 
+                        [class.lost]="column.key === 'state' && game[column.key] === 'lost'"
+                        [class.won]="column.key === 'state' && game[column.key] === 'won'"
+                        [class.easy]="column.key === 'difficulty' && game[column.key] === 'easy'"
+                        [class.medium]="column.key === 'difficulty' && game[column.key] === 'medium'"
+                        [class.hard]="column.key === 'difficulty' && game[column.key] === 'hard'"
+                    >
+                        {{game[column.key]}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
